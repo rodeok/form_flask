@@ -25,10 +25,12 @@ def form():
         details = Details(name=name,email=email,phone=phone)
         db.session.add(details)
         db.session.commit()
-        return render_template('form.html')
+        return redirect('form.html')
     else:
-        all_posts = Details.query.order_by(Details.date_created).all()
-        return render_template("form.html")
-        
+        indi_details = Details.query.order_by(Details.date_created).all()
+        return render_template("form.html", detailss=indi_details)
+@app.route("/thankyou")
+def thank():
+    return render_template("thankyou.html", methods=["POST","GET"])   
 if __name__ == '__main__':
     app.run(debug=True)
