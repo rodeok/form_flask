@@ -29,8 +29,8 @@ def form():
     else:
         indi_details = Details.query.order_by(Details.date_created).all()
         return render_template("form.html", detailss=indi_details)
-@app.route("/thankyou")
+@app.route("/thankyou",methods=["POST","GET"])
 def thank():
-    return render_template("thankyou.html", methods=["POST","GET"])   
+    return render_template("thankyou.html")   
 if __name__ == '__main__':
     app.run(debug=True)
